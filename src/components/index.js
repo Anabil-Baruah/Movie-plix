@@ -1,0 +1,6 @@
+export { default as Footer } from './footer/Footer'
+export { default as Header } from './header/Header'
+export { default as Img } from './lazyLoadImg/Img'
+export { default as ContentWrapper } from './contentWrapper/ContentWrapper'
+export { default as SwitchTabs } from './switchTabs/SwitchTabs'
+export { default as Carousel } from './carousel/Carousel'
