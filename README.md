@@ -28,6 +28,23 @@
 <!-- https://main--dreamy-jelly-bf237f.netlify.app -->
 
 
+## Features
+
+- Efficient State Management with Redux Toolkit
+
+- Efficient Folder and File Structure
+
+- TMDB API Integration
+
+- Movie Search and Filtering
+
+- Watch Trailers
+
+-  User-Friendly Interface and real-Time Updates
+
+
+
+
 ## Installation
 
 <!-- To use this app, you'll need to have Node.js , npm and mongoDB installed on your machine. -->
@@ -57,22 +74,6 @@ Change the directory and start the react app
 ```bash
 cd client
 ``` -->
-
-
-
-## Features
-
-- Efficient State Management with Redux Toolkit
-
-- Efficient Folder and File Structure
-
-- TMDB API Integration
-
-- Movie Search and Filtering
-
-- Watch Trailers
-
--  User-Friendly Interface and real-Time Updates
 
 
 ## Environment Variables
