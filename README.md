@@ -1,7 +1,5 @@
 
-# MoviePlix
-
-<div style="display:flex; flex-direction:column; jsutify-content:center;">
+<div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
 <img width="200" height="200" src = "./src/assets/MoviePlix-logo.svg">
 <img  src = "./src/assets/screen_shots.png">
 <p>Welcome to the Movie plix ! Are you a cinephile looking for a convenient way to access information about your favorite movies? Look no further! This API provides seamless access to a vast treasure trove of movie data using the TMDB (The Movie Database) API.</p>
