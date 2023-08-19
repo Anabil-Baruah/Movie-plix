@@ -23,9 +23,9 @@
 <img src="https://upload.vectorlogo.zone/logos/javascript/images/239ec8a4-163e-4792-83b6-3f6d96911757.svg" alt="Sass" width="40" height="40"/> 
 </div>
 
-## Demo
+<!-- ## Demo -->
 
-https://main--dreamy-jelly-bf237f.netlify.app
+<!-- https://main--dreamy-jelly-bf237f.netlify.app -->
 
 
 ## Installation
@@ -77,13 +77,9 @@ cd client
 
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
+To run this project, you will need to add the following environment variable(s) to your .env file
 
-`MONGO_URL` = mongodb://localhost:27017/My_app
-
-`CRYPTO_API_KEY`= Your crypto api key
-
-`BING_NEWS_API` = Your bing api
+`VITE_APP_TMDB_TOKEN`
 
 
 
