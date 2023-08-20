@@ -84,6 +84,7 @@ const Header = () => {
         <ul className="menuItems">
           <li className="menuItem" onClick={() => { navigationHandler("movie") }}>Movies</li>
           <li className="menuItem" onClick={() => { navigationHandler("tv") }}>TV shows</li>
+          <li className="menuItem" onClick={() => { navigationHandler("tv") }}>Sign in</li>
           <li className="menuItem">
             <HiOutlineSearch
               onClick={openSearch}
