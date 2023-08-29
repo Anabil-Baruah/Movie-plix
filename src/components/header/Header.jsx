@@ -20,8 +20,8 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(()=>{
-    window.scrollTo(0,0)
+  useEffect(() => {
+    window.scrollTo(0, 0)
   }, [location])
 
   const controllNavbar = () => {
@@ -32,7 +32,7 @@ const Header = () => {
       } else {
         setShow("show")
       }
-    }else{
+    } else {
       setShow("top")
     }
     setLastScrollY(window.scrollY)
@@ -77,7 +77,7 @@ const Header = () => {
     <header className={`header ${mobileMenu ? "mobileView" : ""} ${show}`}>
       <ContentWrapper>
         <div className="logo"
-          onClick={()=>navigate(`/`)}
+          onClick={() => navigate(`/`)}
         >
           <img src={logo} alt="" />
         </div>
@@ -94,7 +94,8 @@ const Header = () => {
 
         <div className="mobileMenuItems">
           <HiOutlineSearch onClick={openSearch} />
-          {mobileMenu ? (<VscChromeClose onClick={() => { setMobileMenu(false)}} />) : (<SlMenu onClick={openMobileMenu} />)}
+          {mobileMenu ? (<VscChromeClose onClick={() => { setMobileMenu(false) }} />) :
+            (<SlMenu onClick={openMobileMenu} />)}
         </div>
       </ContentWrapper>
       {showSearch && (
@@ -105,7 +106,7 @@ const Header = () => {
                 type="text"
                 placeholder='Search for a movie'
                 onChange={(e) => setQuery(e.target.value)}
-                onKeyUp={ handleSearch }
+                onKeyUp={handleSearch}
               />
               <VscChromeClose onClick={() => { setShowSearch(false); }} />
 
