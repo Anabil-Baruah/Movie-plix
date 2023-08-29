@@ -24,9 +24,9 @@ Note: This project is under developement
 
 </div>
 
-<!-- ## Demo -->
+## Demo
 
-<!-- https://main--dreamy-jelly-bf237f.netlify.app -->
+https://delightful-lokum-979325.netlify.app
 
 
 ## Features
