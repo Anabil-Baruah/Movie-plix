@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Footer, Header } from './components'
 
 // importing the pages 
-import { Page_404, Explore, SearchResults, Home, Details } from './pages'
+import { Page_404, Explore, SearchResults, Home, Details, CastDetails } from './pages'
 
 function App() {
   const dispatch = useDispatch()
@@ -60,6 +60,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/:mediaType/:id' element={<Details />} />
           <Route path='/search/:query' element={<SearchResults />} />
+          <Route path='/person/:id' element={<CastDetails />} />
           <Route path='/explore/:mediaType' element={<Explore />} />
           <Route path='*' element={<Page_404 />} />
         </Routes>
