@@ -51,7 +51,8 @@
                 border: 0;
                 outline: 0;
                 box-shadow: none;
-                background-color: var(--black-light);
+                background-color: transparent;
+                border: 1.5px solid #fff;
                 border-radius: 20px;
                 .react-select__value-container {
                     .react-select__placeholder,

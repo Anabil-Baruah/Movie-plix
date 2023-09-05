@@ -22,12 +22,11 @@ const Footer = () => {
                     <li className="menuItem">FAQ</li>
                 </ul>
                 <div className="infoText">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur.
+                    Welcome to the Movie plix !
+                    Are you a cinephile looking for a convenient way
+                    to access information about your favorite movies?
+                    Look no further! This API provides seamless access
+                    to a vast treasure trove of movie data using the TMDB API.
                 </div>
                 <div className="socialIcons">
                     <span className="icon">

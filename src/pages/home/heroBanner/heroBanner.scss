@@ -58,6 +58,7 @@
         .title {
             font-size: 50px;
             font-weight: 700;
+            color: var(--gradient);
 
             @include md {
                 margin-bottom: 0;

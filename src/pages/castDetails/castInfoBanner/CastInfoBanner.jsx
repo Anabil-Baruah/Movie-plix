@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import InfiniteScroll from 'react-infinite-scroll-component'
 import './castInfoBanner.scss'
 import useFetch from "../../../hooks/useFetch";
-import PosterFallback from "../../../assets/no-poster.png";
+import Avatar from "../../../assets/avatar.png";
 import Img from "../../../components/lazyLoadImg/Img.jsx";
 import dayjs from 'dayjs';
 
@@ -34,7 +34,7 @@ const CastInfoBanner = () => {
                 ) : (
                   <Img
                     className="profileImg"
-                    src={PosterFallback}
+                    src={Avatar}
                   />
 
                 )}
