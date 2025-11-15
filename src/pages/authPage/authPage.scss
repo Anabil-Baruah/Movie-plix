@@ -1,0 +1,13 @@
+.auth-page-layout {
+    height: 100vh;
+
+    .avatar-layout {
+        display: flex;
+
+        img{
+            margin-top: 4rem;
+            border-radius: 50%;
+            width: 18rem;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { fetchDataFromApi } from './utils/api'
 import { useSelector, useDispatch } from 'react-redux'
 import { getApiConfiguration, getGenres } from './store/homeSlice'
@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Footer, Header } from './components'
 
 // importing the pages 
-import { Page_404, Explore, SearchResults, Home, Details, CastDetails } from './pages'
+import { Page_404, Explore, SearchResults, Home, Details, CastDetails, AuthPage } from './pages'
 
 function App() {
   const dispatch = useDispatch()
@@ -62,6 +62,7 @@ function App() {
           <Route path='/search/:query' element={<SearchResults />} />
           <Route path='/person/:id' element={<CastDetails />} />
           <Route path='/explore/:mediaType' element={<Explore />} />
+          <Route path='/authPage' element={<AuthPage />} />
           <Route path='*' element={<Page_404 />} />
         </Routes>
         <Footer />
