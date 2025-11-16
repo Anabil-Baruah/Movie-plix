@@ -111,6 +111,7 @@ const Header = () => {
         <ul className="menuItems">
           <li className="menuItem" onClick={() => { navigationHandler("movie") }}>Movies</li>
           <li className="menuItem" onClick={() => { navigationHandler("tv") }}>TV shows</li>
+          <li className="menuItem" onClick={() => navigate('/subscriptions')}>Subscriptions</li>
           {isAuthenticated ? (
             <li className="menuItem">
               <Dropdown 

@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Footer, Header, ProtectedRoute } from './components'
 
 // importing the pages 
-import { Page_404, Explore, SearchResults, Home, Details, CastDetails, AuthPage, Profile } from './pages'
+import { Page_404, Explore, SearchResults, Home, Details, CastDetails, AuthPage, Profile, Subscriptions } from './pages'
 
 function App() {
   const dispatch = useDispatch()
@@ -89,6 +89,7 @@ function App() {
           <Route path='/explore/:mediaType' element={<Explore />} />
           <Route path='/authPage' element={<AuthPage />} />
           <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path='/subscriptions' element={<Subscriptions />} />
           <Route path='*' element={<Page_404 />} />
         </Routes>
         <Footer />
