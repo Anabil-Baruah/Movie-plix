@@ -16,6 +16,7 @@ import VideoPopup from "../../../components/vidoePopup/VideoPopUp";
 import { FiHeart, FiBookmark } from "react-icons/fi";
 import { updateUser } from "../../../store/authSlice";
 import { updateUserProfile } from "../../../services/authService";
+import { message } from "antd";
 
 const DetailsBanner = ({ video, crew }) => {
     const [show, setShow] = useState(false);
@@ -40,20 +41,39 @@ const DetailsBanner = ({ video, crew }) => {
     const handleToggleWatchlist = async () => {
         if (!user) return;
         const current = user.watchlist || [];
+        const actionAdded = !isInWatchlist;
         const updated = isInWatchlist
             ? current.filter((w) => !(w.id === data.id && w.mediaType === mediaType))
             : [...current, { ...baseItem }];
         const updatedUser = await updateUserProfile(user.id || user._id, { watchlist: updated });
         dispatch(updateUser(updatedUser));
+        message.success(actionAdded ? 'Added to Watchlist' : 'Removed from Watchlist');
     };
     const handleToggleFavorite = async () => {
         if (!user) return;
         const current = user.favorites || [];
+        const actionAdded = !isFavorite;
         const updated = isFavorite
             ? current.filter((f) => !(f.id === data.id && f.mediaType === mediaType))
             : [...current, { ...baseItem }];
         const updatedUser = await updateUserProfile(user.id || user._id, { favorites: updated });
         dispatch(updateUser(updatedUser));
+        message.success(actionAdded ? 'Added to Favorites' : 'Removed from Favorites');
+    };
+
+    const handlePlay = async () => {
+        if (user && data?.id) {
+            const current = user.viewingHistory || [];
+            const filtered = current.filter((h) => !(h.id === data.id && h.mediaType === mediaType));
+            const updated = [{ ...baseItem, watchedAt: new Date().toISOString() }, ...filtered].slice(0, 100);
+            const updatedUser = await updateUserProfile(user.id || user._id, { viewingHistory: updated });
+            dispatch(updateUser(updatedUser));
+            message.success('Added to Recently Watched');
+        }
+        if (video?.key) {
+            setVideoId(video.key);
+            setShow(true);
+        }
     };
 
     const toHoursAndMinutes = (totalMinutes) => {
@@ -105,7 +125,7 @@ const DetailsBanner = ({ video, crew }) => {
                                             <CircleRating
                                                 rating={data.vote_average.toFixed(1)}
                                             />
-                                            <div className="playbtn" onClick={() => { setShow(true), setVideoId(video.key) }}>
+                                            <div className="playbtn" onClick={handlePlay}>
                                                 <PlayButton />
                                                 <span className="text">Watch trailer</span>
                                             </div>
