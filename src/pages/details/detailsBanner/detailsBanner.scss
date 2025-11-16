@@ -159,6 +159,28 @@
                 gap: 25px;
                 margin-bottom: 25px;
             }
+            .detailActions {
+                display: flex;
+                gap: 12px;
+                margin-bottom: 25px;
+                flex-wrap: wrap;
+                .actionBtn {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    padding: 10px 14px;
+                    border-radius: 999px;
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    background: rgba(255, 255, 255, 0.08);
+                    color: #fff;
+                    cursor: pointer;
+                    font-weight: 500;
+                    transition: all 0.2s ease;
+                    svg { width: 18px; height: 18px; }
+                    &:hover { border-color: var(--pink); background: rgba(255, 255, 255, 0.12); }
+                    &.active { background: var(--pink); border-color: var(--pink); }
+                }
+            }
 
             .info {
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);

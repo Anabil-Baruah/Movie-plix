@@ -36,6 +36,7 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
                 <span className="date">
                     {dayjs(data.release_date).format("MMM D, YYYY")}
                 </span>
+
             </div>
         </div>
     );

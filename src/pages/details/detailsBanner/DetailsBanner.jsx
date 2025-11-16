@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import dayjs from "dayjs";
 
 import "./detailsBanner.scss";
@@ -13,6 +13,9 @@ import Img from "../../../components/lazyLoadImg/Img.jsx";
 import PosterFallback from "../../../assets/no-poster.png";
 import { PlayButton } from '../playButton/PlayButton'
 import VideoPopup from "../../../components/vidoePopup/VideoPopUp";
+import { FiHeart, FiBookmark } from "react-icons/fi";
+import { updateUser } from "../../../store/authSlice";
+import { updateUserProfile } from "../../../services/authService";
 
 const DetailsBanner = ({ video, crew }) => {
     const [show, setShow] = useState(false);
@@ -25,10 +28,33 @@ const DetailsBanner = ({ video, crew }) => {
 
     const _genres = data?.genres.map((g) => g.id)
 
-    const director = crew?.find((c) => c.job === "Director");  // find the director from crew   
-    const writer = crew?.find((c) => c.job === "Screenplay" || c.job === "Story" || c.job === "Writer");  // find the writer from crew
+    const director = crew?.find((c) => c.job === "Director");
+    const writer = crew?.find((c) => c.job === "Screenplay" || c.job === "Story" || c.job === "Writer");
 
-    console.log(director, "direct")
+    const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.auth);
+    const posterUrl = data?.poster_path ? url.poster + data.poster_path : PosterFallback;
+    const isInWatchlist = user?.watchlist?.some((w) => w.id === data?.id && w.mediaType === mediaType);
+    const isFavorite = user?.favorites?.some((f) => f.id === data?.id && f.mediaType === mediaType);
+    const baseItem = { id: data?.id, mediaType: mediaType, title: data?.title || data?.name, poster: posterUrl };
+    const handleToggleWatchlist = async () => {
+        if (!user) return;
+        const current = user.watchlist || [];
+        const updated = isInWatchlist
+            ? current.filter((w) => !(w.id === data.id && w.mediaType === mediaType))
+            : [...current, { ...baseItem }];
+        const updatedUser = await updateUserProfile(user.id || user._id, { watchlist: updated });
+        dispatch(updateUser(updatedUser));
+    };
+    const handleToggleFavorite = async () => {
+        if (!user) return;
+        const current = user.favorites || [];
+        const updated = isFavorite
+            ? current.filter((f) => !(f.id === data.id && f.mediaType === mediaType))
+            : [...current, { ...baseItem }];
+        const updatedUser = await updateUserProfile(user.id || user._id, { favorites: updated });
+        dispatch(updateUser(updatedUser));
+    };
 
     const toHoursAndMinutes = (totalMinutes) => {
         const hours = Math.floor(totalMinutes / 60);
@@ -79,12 +105,24 @@ const DetailsBanner = ({ video, crew }) => {
                                             <CircleRating
                                                 rating={data.vote_average.toFixed(1)}
                                             />
-                                            <div className="playbtn"
-                                            onClick={()=>{setShow(true) ,setVideoId(video.key)}}
-                                            >
+                                            <div className="playbtn" onClick={() => { setShow(true), setVideoId(video.key) }}>
                                                 <PlayButton />
                                                 <span className="text">Watch trailer</span>
                                             </div>
+                                        </div>
+                                        <div className="detailActions">
+                                            <button
+                                                className={`actionBtn ${isInWatchlist ? 'active' : ''}`}
+                                                onClick={handleToggleWatchlist}
+                                            >
+                                                <FiBookmark /> {isInWatchlist ? 'In Watchlist' : 'Add to Watchlist'}
+                                            </button>
+                                            <button
+                                                className={`actionBtn ${isFavorite ? 'active' : ''}`}
+                                                onClick={handleToggleFavorite}
+                                            >
+                                                <FiHeart /> {isFavorite ? 'Favorited' : 'Add to Favorites'}
+                                            </button>
                                         </div>
 
                                         <div className="overview">
