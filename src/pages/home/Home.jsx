@@ -4,6 +4,8 @@ import Trending from './trending/Trending'
 import Popular from './popular/Popular'
 import TopRated from './topRated/TopRated'
 import Personalized from './personalized/Personalized'
+import BecauseWatched from './becauseWatched/BecauseWatched'
+import SimilarUsers from './similarUsers/SimilarUsers'
 import HeroBanner from'./heroBanner/HeroBanner'
 
 const Home = () => {
@@ -11,6 +13,8 @@ const Home = () => {
     <div className='homePage'>
       <HeroBanner/>
       <Personalized/>
+      <BecauseWatched/>
+      <SimilarUsers/>
       <Trending/>
       <Popular/>
       <TopRated/>

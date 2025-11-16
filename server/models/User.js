@@ -87,6 +87,15 @@ const userSchema = new mongoose.Schema({
       type: Date,
       default: Date.now
     }
+  }],
+  ratings: [{
+    id: Number,
+    mediaType: String,
+    rating: Number,
+    ratedAt: {
+      type: Date,
+      default: Date.now
+    }
   }]
 }, {
   timestamps: true

@@ -162,3 +162,19 @@ export const getUserPreferences = async () => {
     throw new Error(error.message || 'Failed to get preferences');
   }
 };
+
+export const getCollaborativeRecommendations = async () => {
+  try {
+    const response = await authApi.get('/recommendations/collaborative');
+    if (response.data.success) {
+      return response.data.data;
+    } else {
+      throw new Error(response.data.message || 'Failed to get recommendations');
+    }
+  } catch (error) {
+    if (error.response?.data?.message) {
+      throw new Error(error.response.data.message);
+    }
+    throw new Error(error.message || 'Failed to get recommendations');
+  }
+};
