@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import { fetchDataFromApi } from './utils/api'
 import { useSelector, useDispatch } from 'react-redux'
 import { getApiConfiguration, getGenres } from './store/homeSlice'
-import { loginSuccess, loginFailure } from './store/authSlice'
-import { verifyToken } from './services/authService'
+import { loginSuccess, loginFailure, updateUser } from './store/authSlice'
+import { verifyToken, getCurrentUser } from './services/authService'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // importing the components 
@@ -30,6 +30,10 @@ function App() {
       try {
         const response = await verifyToken(storedToken)
         dispatch(loginSuccess(response))
+        try {
+          const fullUser = await getCurrentUser()
+          dispatch(updateUser(fullUser))
+        } catch {}
       } catch (error) {
         // Token is invalid, clear it
         dispatch(loginFailure('Session expired. Please login again.'))

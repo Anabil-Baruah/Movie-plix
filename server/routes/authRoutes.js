@@ -324,6 +324,10 @@ router.post('/verify', async (req, res) => {
           email: user.email,
           avatar: user.avatar,
           preferences: user.preferences,
+          watchlist: user.watchlist,
+          favorites: user.favorites,
+          viewingHistory: user.viewingHistory,
+          continueWatching: user.continueWatching,
           createdAt: user.createdAt
         },
         token
