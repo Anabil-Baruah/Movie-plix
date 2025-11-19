@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: movie_app_api
+    env_file:
+      - ./server/.env
+    environment:
+      - APP_PORT=5000
+      - CORS_ORIGIN=http://localhost:8080
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=http://localhost:5000/api
+    container_name: movie_app_web
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+
+  mongo:
+    image: mongo:6
+    container_name: movie_app_mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
