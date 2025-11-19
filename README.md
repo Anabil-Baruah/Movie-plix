@@ -2,6 +2,8 @@
 
 Full‑stack OTT application built with React (Vite), Node.js (Express), MongoDB, and TMDB integration. The frontend never calls TMDB directly; all TMDB requests go through the backend proxy with server‑side caching.
 
+Demo: [text](https://movie-plix.netlify.app/)
+
 ## Tech Stack
 - Frontend: React 18, Vite, Redux Toolkit, React Router, Axios, Sass, Nginx (container)
 - Backend: Node.js, Express, Mongoose, JWT, CORS, dotenv
