@@ -18,8 +18,14 @@ const HeroBanner = () => {
   const { data, loading } = useFetch("/movie/upcoming")
 
   useEffect(() => {
-    const bg = url?.backdrop + data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path
-    setBackground(bg)
+    const items = data?.results || []
+    if (!items.length || !url?.backdrop) return
+    const withBackdrop = items.filter((i) => i && i.backdrop_path)
+    const candidate = (withBackdrop.length ? withBackdrop : items)[Math.floor(Math.random() * (withBackdrop.length || items.length))]
+    const path = candidate?.backdrop_path || candidate?.poster_path
+    if (!path) return
+    const base = candidate?.backdrop_path ? url.backdrop : url.poster
+    setBackground(base + path)
   }, [data])
 
   const handleSearch = (e) => {

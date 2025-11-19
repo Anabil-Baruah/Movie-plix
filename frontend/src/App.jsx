@@ -46,14 +46,15 @@ function App() {
   const fetchApiConfig = () => {
     fetchDataFromApi('/configuration')
       .then((res) => {
-        // console.log(res)
-
-        const url = {
-          backdrop: res.images.secure_base_url + "original",
-          poster: res.images.secure_base_url + "original",
-          profile: res.images.secure_base_url + "original"
-        };
-        dispatch(getApiConfiguration(url))
+        if (res && res.images && res.images.secure_base_url) {
+          const base = res.images.secure_base_url
+          const url = {
+            backdrop: base + "w1280",
+            poster: base + "w500",
+            profile: base + "w185"
+          }
+          dispatch(getApiConfiguration(url))
+        }
       })
   }
 
@@ -69,8 +70,9 @@ function App() {
     const data = await Promise.all(promises)
     console.log(data, "all genres")
 
-    data.map(({ genres }) => {
-      return genres.map((item) => (allGeners[item.id] = item))
+    const valid = data.filter(d => d && Array.isArray(d.genres))
+    valid.forEach(({ genres }) => {
+      genres.forEach((item) => { allGeners[item.id] = item })
     })
 
     console.log(allGeners, "all genres")
